@@ -60,10 +60,13 @@ def my_call(message, func):
     print(message)
     for el in lst:
         print("\tс параметром method:", el)
-        response = func("https://playground.learnqa.ru/ajax/api/compare_query_type", params={"method": el})
+        if func == requests.get:
+            response = func("https://playground.learnqa.ru/ajax/api/compare_query_type", params={"method": el})
+        else:
+            response = func("https://playground.learnqa.ru/ajax/api/compare_query_type", data={"method": el})
         print("\t\tОтвет:", response.text)
 
-my_call("Вызов метода GET", requests.get)
-my_call("Вызов метода POST", requests.post)
-my_call("Вызов метода PUT", requests.put)
-my_call("Вызов метода DELETE", requests.delete)
+my_call("Вызов метода GET:", requests.get)
+my_call("Вызов метода POST:", requests.post)
+my_call("Вызов метода PUT:", requests.put)
+my_call("Вызов метода DELETE:", requests.delete)
