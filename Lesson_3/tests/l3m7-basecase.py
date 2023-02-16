@@ -31,7 +31,6 @@ class TestUserAuth(BaseCase):
 
         user_id_from_check_method = response2.json()["user_id"]
         print(user_id_from_check_method)
-
         assert self.user_id_from_auth_method == user_id_from_check_method, "User id from auth method is not equal to user id from from check method"
 
     @pytest.mark.parametrize('condition', exclude_params)
@@ -48,7 +47,5 @@ class TestUserAuth(BaseCase):
             )
 
         assert "user_id" in response2.json(), "There is no user id in the second response"
-
         user_id_from_check_method = response2.json()["user_id"]
-
         assert user_id_from_check_method == 0, f"User is authorized with condition {condition}"
